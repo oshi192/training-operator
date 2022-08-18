@@ -73,13 +73,13 @@ func main() {
 
 	// PyTorch related flags
 	flag.StringVar(&config.Config.PyTorchInitContainerImage, "pytorch-init-container-image",
-		config.PyTorchInitContainerImageDefault, "The image for pytorch init container")
+		os.Getenv("AIRGAP_REGISTRY") + config.PyTorchInitContainerImageDefault, "The image for pytorch init container")
 	flag.StringVar(&config.Config.PyTorchInitContainerTemplateFile, "pytorch-init-container-template-file",
 		config.PyTorchInitContainerTemplateFileDefault, "The template file for pytorch init container")
 
 	// MPI related flags
 	flag.StringVar(&config.Config.MPIKubectlDeliveryImage, "mpi-kubectl-delivery-image",
-		config.MPIKubectlDeliveryImageDefault, "The image for mpi launcher init container")
+		os.Getenv("AIRGAP_REGISTRY") + config.MPIKubectlDeliveryImageDefault, "The image for mpi launcher init container")
 
 	opts := zap.Options{
 		Development:     true,
